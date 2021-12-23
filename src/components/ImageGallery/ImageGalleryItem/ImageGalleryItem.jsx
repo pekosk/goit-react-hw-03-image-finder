@@ -1,15 +1,19 @@
 import styles from "./ImageGalleryItem.module.css";
 import PropTypes from "prop-types";
-import React, { Component } from "react";
 
-class ImageGalleryItem extends Component {
-    render() {
+
+const ImageGalleryItem = ({ onImageOpen, tags, webformatURL }) => {
         return (
-            <li className={styles.galleryItem}>
-  <img src="" alt="" />
+            <li className={styles.galleryItem} onClick={onImageOpen}>
+  <img src={webformatURL} alt={tags} />
 </li>
     );
   }
+
+ImageGalleryItem.propTypes = {
+  onImageOpen: PropTypes.func.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
 }
 
 export default ImageGalleryItem;
