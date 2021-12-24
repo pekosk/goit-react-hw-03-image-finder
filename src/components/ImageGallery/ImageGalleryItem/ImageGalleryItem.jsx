@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ImageGalleryItem = ({ onImageOpen, tags, webformatURL }) => {
   return (
     <li className={styles.galleryItem} onClick={onImageOpen}>
-      <img src={webformatURL} alt={tags} />
+      <img className={styles.galleryImg} src={webformatURL} alt={tags} />
     </li>
   );
 };

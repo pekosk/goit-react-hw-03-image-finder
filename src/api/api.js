@@ -18,11 +18,11 @@ const getQuery = (page) => {
     return instnce.get(`/?_page=${page}`)
 }
 
-const searchQuery = (page = 1, query) => {
+const searchQuery = (page = 1, q) => {
     return instnce.get("/", {
         params: {
             page,
-            query,
+            q,
         }
     })
 }

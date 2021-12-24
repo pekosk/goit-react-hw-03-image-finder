@@ -23,22 +23,24 @@ class Searchbar extends Component {
     const { submitQuery, handleChange } = this;
     return (
       <header className={styles.searchbar}>
-        <form onSubmit={submitQuery} className={styles.form}>
-          <button type="submit" className={styles.button}>
-            <span className={styles.buttonLabel}>Search</span>
-          </button>
+        <div className={styles.formContainer}>
+          <form onSubmit={submitQuery} className={styles.form}>
+            <button type="submit" className={styles.btn}>
+              Search
+            </button>
 
-          <input
-            className={styles.searchInput}
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            value={query}
-            onChange={handleChange}
-            name="query"
-          />
-        </form>
+            <input
+              className={styles.searchInput}
+              type="text"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+              value={query}
+              onChange={handleChange}
+              name="query"
+            />
+          </form>
+        </div>
       </header>
     );
   }

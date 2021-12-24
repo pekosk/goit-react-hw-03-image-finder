@@ -1,0 +1,12 @@
+.galleryImg {
+  width: 300px;
+  height: 260px;
+  border-radius: 5px;
+}
+
+.galleryItem {
+  margin-left: 15px;
+  margin-bottom: 15px;
+
+  flex-basis: calc(100% / 4 - 15px);
+}

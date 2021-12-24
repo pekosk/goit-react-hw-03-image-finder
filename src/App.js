@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ApiService } from './api/api';
+import { ApiService } from './Api/api';
 
 import styles from './App.module.css';
 
@@ -41,6 +41,9 @@ class App extends Component {
     const { page, query } = this.state;
     try {
       const { data } = await ApiService.searchQuery(page, query);
+      if (!data.hits.length) {
+        return alert('Sorry, there are no images matching your search query. Please try again.');
+      }
       this.setState(({ items, page }) => {
         return {
           items: [...items, ...data.hits],
