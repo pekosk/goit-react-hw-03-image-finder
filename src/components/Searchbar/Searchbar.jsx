@@ -13,14 +13,14 @@ class Searchbar extends Component {
     this.setState({ query: '' });
   };
 
-  searchQuery = ({ target }) => {
+  handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
 
   render() {
     const { query } = this.state;
-    const { submitQuery, searchQuery } = this;
+    const { submitQuery, handleChange } = this;
     return (
       <header className={styles.searchbar}>
         <form onSubmit={submitQuery} className={styles.form}>
@@ -35,7 +35,8 @@ class Searchbar extends Component {
             autoFocus
             placeholder="Search images and photos"
             value={query}
-            onChange={searchQuery}
+            onChange={handleChange}
+            name="query"
           />
         </form>
       </header>

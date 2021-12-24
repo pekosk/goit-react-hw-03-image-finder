@@ -37,10 +37,6 @@ class App extends Component {
     }
   }
 
-  searchQuery = ({ query }) => {
-    this.setState({ query, page: 1, });
-  };
-
   async fetchQuery() {
     const { page, query } = this.state;
     try {
@@ -60,6 +56,10 @@ class App extends Component {
       });
     }
   }
+
+  searchQuery = ({ query }) => {
+    this.setState({ query, page: 1, });
+  };
 
   openModal = (id) => {
     this.setState((prevState) => {
@@ -86,11 +86,6 @@ class App extends Component {
     const showBtn = items.length >= 12 && !loading;
     return (
       <>
-        {modalOpen && (
-          <Modal closeModal={closeModal}>
-            <img className={styles.modalImage} src={largeImageURL} alt={query} />
-          </Modal>
-        )}
         <Searchbar onSubmit={searchQuery} />
         {!error && <ImageGallery items={items} onClick={openModal} />}
         {showBtn && <Button onClick={loadMore} />}
@@ -103,6 +98,11 @@ class App extends Component {
             timeout={3000} //3 secs
           />
         </div>}
+        {modalOpen && (
+          <Modal closeModal={closeModal}>
+            <img className={styles.modalImage} src={largeImageURL} alt={query} />
+          </Modal>
+        )}
       </>
     );
   }
