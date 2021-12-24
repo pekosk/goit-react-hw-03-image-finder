@@ -28,13 +28,17 @@ class Modal extends Component {
     const { onCloseModal } = this;
     const { children } = this.props;
       return (
-          <div class="overlay">
-            <div className={styles.modal} onClick={onCloseModal}>
-                <img src="" alt="" />
+          <div className={styles.overlay} onClick={onCloseModal}>
+            <div className={styles.modal}>
+                {children}
             </div>
           </div>
     );
   }
+}
+
+Modal.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
 }
 
 export default Modal;

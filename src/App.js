@@ -41,19 +41,60 @@ class App extends Component {
     this.setState({ query, page: 1, });
   };
 
-  LoadMore = (e) => {
+  async fetchQuery() {
+    const { page, query } = this.state;
+    try {
+      const { data } = await ApiService.searchQuery(page, query);
+      this.setState(({ items, page }) => {
+        return {
+          items: [...items, ...data.hits],
+          loading: false,
+          error: null,
+          page: page + 1,
+        };
+      });
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error,
+      });
+    }
+  }
+
+  openModal = (id) => {
+    this.setState((prevState) => {
+      const { items } = prevState;
+      const { largeImageURL } = items.find((item) => item.id === id);
+      return {
+        modalOpen: true,
+        largeImageURL,
+      };
+    });
+  };
+
+  closeModal = (e) => {
+    this.setState({ modalOpen: false });
+  };
+
+  loadMore = (e) => {
     this.fetchQuery();
   };
 
   render() {
-    const { items, loading, error, page, query, id, modalOpen, largeImageURL } = this.state;
+    const { items, loading, error, query, modalOpen, largeImageURL } = this.state;
     const { searchQuery, closeModal, openModal, loadMore } = this;
+    const showBtn = items.length >= 12 && !loading;
     return (
       <>
+        {modalOpen && (
+          <Modal closeModal={closeModal}>
+            <img className={styles.modalImage} src={largeImageURL} alt={query} />
+          </Modal>
+        )}
         <Searchbar onSubmit={searchQuery} />
-        <ImageGallery items={items} />
-        <Button />
-        <div className={styles.loader}>
+        {!error && <ImageGallery items={items} onClick={openModal} />}
+        {showBtn && <Button onClick={loadMore} />}
+        {loading && <div className={styles.loader}>
           <Loader
             type="Puff"
             color="#00BFFF"
@@ -61,7 +102,7 @@ class App extends Component {
             width={100}
             timeout={3000} //3 secs
           />
-        </div>
+        </div>}
       </>
     );
   }
