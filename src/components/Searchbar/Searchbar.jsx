@@ -4,18 +4,18 @@ import React, { Component } from "react";
 
 class Searchbar extends Component {
   state = {
-    query: '',
-  }
-
-  submitQuery = (e) => {
-    e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.setState({ query: '' });
+    query: "",
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+  };
+
+  submitQuery = (e) => {
+    e.preventDefault();
+    this.props.onSubmit(this.state);
+    this.setState({ query: "" });
   };
 
   render() {
@@ -46,6 +46,6 @@ class Searchbar extends Component {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-}
+};
 
 export default Searchbar;

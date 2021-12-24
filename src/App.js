@@ -88,7 +88,7 @@ class App extends Component {
       <>
         <Searchbar onSubmit={searchQuery} />
         {!error && <ImageGallery items={items} onClick={openModal} />}
-        {showBtn && <Button onClick={loadMore} />}
+        {showBtn && <Button onLoadMore={loadMore} />}
         {loading && <div className={styles.loader}>
           <Loader
             type="Puff"
