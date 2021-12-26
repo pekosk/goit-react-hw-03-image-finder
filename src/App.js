@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ApiService } from './Api/api';
+import { ApiService } from './api/api';
 
 import styles from './App.module.css';
 
