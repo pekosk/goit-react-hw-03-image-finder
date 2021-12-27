@@ -90,7 +90,7 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={searchQuery} />
-        {!error && <ImageGallery items={items} onClick={openModal} />}
+        {!error && <ImageGallery onClick={openModal} items={items} />}
         {showBtn && <Button onLoadMore={loadMore} />}
         {loading && <div className={styles.loader}>
           <Loader

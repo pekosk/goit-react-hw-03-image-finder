@@ -33,7 +33,7 @@ class Modal extends Component {
       <div className={styles.overlay} onClick={onCloseModal}>
         <div className={styles.modal}>{children}</div>
       </div>,
-      modalRoot
+      modalRoot,
     );
   }
 }

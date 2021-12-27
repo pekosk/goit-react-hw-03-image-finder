@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import ImageGalleryItem from "./ImageGalleryItem";
 
-const ImageGallery = ({ items, onImageOpen }) => {
+const ImageGallery = ({ items, onClick }) => {
   const elem = items.map((item) => (
     <ImageGalleryItem
-      onClick={() => onImageOpen(item.id)}
+      onClick={() => onClick(item.id)}
       key={item.id}
       {...item}
     />
