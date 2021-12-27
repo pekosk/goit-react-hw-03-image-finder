@@ -1,9 +1,7 @@
 import styles from "./Modal.module.css";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { createPortal } from "react-dom";
 
-const modalRoot = document.querySelector("#modal-root");
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener("keydown", this.close);
@@ -27,13 +25,10 @@ class Modal extends Component {
   };
 
   render() {
-    const { onCloseModal } = this;
-    const { children } = this.props;
-    return createPortal(
-      <div className={styles.overlay} onClick={onCloseModal}>
-        <div className={styles.modal}>{children}</div>
-      </div>,
-      modalRoot,
+    return (
+      <div className={styles.overlay} onClick={this.onCloseModal}>
+        {this.props.children}
+      </div>
     );
   }
 }
