@@ -1,11 +1,11 @@
 import styles from "./Button.module.css";
 import PropTypes from "prop-types";
 
-const Button = ({ onLoadMore }) => {
+const Button = ({ title, onLoadMore }) => {
   return (
     <div className={styles.loadBtn}>
       <button type="button" onClick={onLoadMore} className={styles.btn}>
-        Load More
+        {title}
       </button>
     </div>
   );
